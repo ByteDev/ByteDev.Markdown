@@ -231,28 +231,86 @@ namespace ByteDev.Markdown.Helper
             return $"![{altText}]({uri})";
         }
 
-        public static string ListUnordered(params object[] list)
+        /// <summary>
+        /// Returns a markdown task list.
+        /// </summary>
+        /// <param name="items">Task list items.</param>
+        /// <returns>Markdown task list.</returns>
+        public static string TaskList(params TaskListItem[] items)
         {
-            if (list == null)
+            return TaskList(items as IEnumerable<TaskListItem>);
+        }
+
+        /// <summary>
+        /// Returns a markdown task list.
+        /// </summary>
+        /// <param name="items">Task list items.</param>
+        /// <returns>Markdown task list.</returns>
+        public static string TaskList(IEnumerable<TaskListItem> items)
+        {
+            if (items == null)
                 return string.Empty;
 
             var sb = new StringBuilder();
 
-            foreach (var item in list)
+            foreach (var item in items)
+                sb.AppendLine(TaskListItem(item));
+
+            return sb.ToString();
+        }
+
+        /// <summary>
+        /// Returns a markdown unordered list.
+        /// </summary>
+        /// <param name="items">List items.</param>
+        /// <returns>Markdown unordered list.</returns>
+        public static string UnorderedList(params object[] items)
+        {
+            return UnorderedList(items as IEnumerable<object>);
+        }
+
+        /// <summary>
+        /// Returns a markdown unordered list.
+        /// </summary>
+        /// <param name="items">List items.</param>
+        /// <returns>Markdown unordered list.</returns>
+        public static string UnorderedList(IEnumerable<object> items)
+        {
+            if (items == null)
+                return string.Empty;
+
+            var sb = new StringBuilder();
+
+            foreach (var item in items)
                 sb.AppendLine($"* {item}");
 
             return sb.ToString();
         }
 
-        public static string ListOrdered(params object[] list)
+        /// <summary>
+        /// Returns a markdown ordered list.
+        /// </summary>
+        /// <param name="items">List items.</param>
+        /// <returns>Markdown ordered list.</returns>
+        public static string OrderedList(params object[] items)
         {
-            if (list == null)
+            return OrderedList(items as IEnumerable<object>);
+        }
+
+        /// <summary>
+        /// Returns a markdown ordered list.
+        /// </summary>
+        /// <param name="items">List items.</param>
+        /// <returns>Markdown ordered list.</returns>
+        public static string OrderedList(IEnumerable<object> items)
+        {
+            if (items == null)
                 return string.Empty;
 
             var sb = new StringBuilder();
             var number = 1;
 
-            foreach (var item in list)
+            foreach (var item in items)
             {
                 sb.AppendLine($"{number}. {item}");
                 number++;
@@ -261,33 +319,22 @@ namespace ByteDev.Markdown.Helper
             return sb.ToString();
         }
 
-        public static string ListTask(params TaskListItem[] list)
-        {
-            if (list == null)
-                return string.Empty;
-
-            var sb = new StringBuilder();
-
-            foreach (var item in list)
-                sb.AppendLine(TaskListItem(item));
-
-            return sb.ToString();
-        }
-
-        public static string ListTask(IEnumerable<TaskListItem> list)
-        {
-            if (list == null)
-                return string.Empty;
-
-            var sb = new StringBuilder();
-
-            foreach (var item in list)
-                sb.AppendLine(TaskListItem(item));
-
-            return sb.ToString();
-        }
-
+        /// <summary>
+        /// Returns a markdown table header.
+        /// </summary>
+        /// <param name="values">Header values.</param>
+        /// <returns>Markdown table header.</returns>
         public static string TableHeader(params object[] values)
+        {
+            return TableHeader(values as IEnumerable<object>);
+        }
+
+        /// <summary>
+        /// Returns a markdown table header.
+        /// </summary>
+        /// <param name="values">Header values.</param>
+        /// <returns>Markdown table header.</returns>
+        public static string TableHeader(IEnumerable<object> values)
         {
             if (values == null)
                 return string.Empty;
@@ -312,7 +359,22 @@ namespace ByteDev.Markdown.Helper
             return sb.ToString();
         }
 
+        /// <summary>
+        /// Returns a markdown table row.
+        /// </summary>
+        /// <param name="values">Row values.</param>
+        /// <returns>Markdown table row.</returns>
         public static string TableRow(params object[] values)
+        {
+            return TableRow(values as IEnumerable<object>);
+        }
+        
+        /// <summary>
+        /// Returns a markdown table row.
+        /// </summary>
+        /// <param name="values">Row values.</param>
+        /// <returns>Markdown table row.</returns>
+        public static string TableRow(IEnumerable<object> values)
         {
             if (values == null)
                 return string.Empty;

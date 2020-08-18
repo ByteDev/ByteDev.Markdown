@@ -35,6 +35,7 @@ Reference the namespace: `ByteDev.Markdown.Helper`.
 - Italic
 - Bold
 - Strike
+- Blockquote
 - HorizontalRule
 - Header1
 - Header2
@@ -42,7 +43,6 @@ Reference the namespace: `ByteDev.Markdown.Helper`.
 - Header4
 - Header5
 - Header6
-- Blockquote
 - Code
 - CodeBlock
 - Link
