@@ -52,3 +52,20 @@ Reference the namespace: `ByteDev.Markdown.Helper`.
 - ListTask
 - TableHeader
 - TableRow
+
+Example code:
+
+```csharp
+Console.Write(Md.Header1("TODO list"));
+Console.Write(Md.TaskList(
+    new TaskListItem("Write the theme tune", true), 
+    new TaskListItem("Sing the theme tune"));
+```
+
+Output:
+
+```
+# TODO list
+- [x] Write the theme tune
+- [ ] Sing the theme tune
+```

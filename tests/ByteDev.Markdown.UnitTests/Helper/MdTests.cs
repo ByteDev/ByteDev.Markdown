@@ -22,7 +22,7 @@ namespace ByteDev.Markdown.UnitTests.Helper
             }
 
             [Test]
-            public void WhenTextIsValid_ThenReturnHeader()
+            public void WhenTextIsValid_ThenReturnMarkdown()
             {
                 var result = Md.Italic("make this italic");
 
@@ -43,7 +43,7 @@ namespace ByteDev.Markdown.UnitTests.Helper
             }
 
             [Test]
-            public void WhenTextIsValid_ThenReturnHeader()
+            public void WhenTextIsValid_ThenReturnMarkdown()
             {
                 var result = Md.Bold("make this bold");
 
@@ -64,7 +64,7 @@ namespace ByteDev.Markdown.UnitTests.Helper
             }
 
             [Test]
-            public void WhenTextIsValid_ThenReturnHeader()
+            public void WhenTextIsValid_ThenReturnMarkdown()
             {
                 var result = Md.Strike("ignore this");
 
@@ -85,7 +85,7 @@ namespace ByteDev.Markdown.UnitTests.Helper
             }
 
             [Test]
-            public void WhenTextIsValid_ThenReturnHeader()
+            public void WhenTextIsValid_ThenReturnMarkdown()
             {
                 var result = Md.Blockquote("Something somewhere");
 
@@ -122,7 +122,7 @@ namespace ByteDev.Markdown.UnitTests.Helper
             {
                 var result = Md.Header1("My Header");
 
-                Assert.That(result, Is.EqualTo("# My Header"));
+                Assert.That(result, Is.EqualTo("# My Header" + Environment.NewLine));
             }
         }
 
@@ -143,7 +143,7 @@ namespace ByteDev.Markdown.UnitTests.Helper
             {
                 var result = Md.Header2("My Header");
 
-                Assert.That(result, Is.EqualTo("## My Header"));
+                Assert.That(result, Is.EqualTo("## My Header" + Environment.NewLine));
             }
         }
 
@@ -164,7 +164,7 @@ namespace ByteDev.Markdown.UnitTests.Helper
             {
                 var result = Md.Header3("My Header");
 
-                Assert.That(result, Is.EqualTo("### My Header"));
+                Assert.That(result, Is.EqualTo("### My Header" + Environment.NewLine));
             }
         }
 
@@ -185,7 +185,7 @@ namespace ByteDev.Markdown.UnitTests.Helper
             {
                 var result = Md.Header4("My Header");
 
-                Assert.That(result, Is.EqualTo("#### My Header"));
+                Assert.That(result, Is.EqualTo("#### My Header" + Environment.NewLine));
             }
         }
 
@@ -206,7 +206,7 @@ namespace ByteDev.Markdown.UnitTests.Helper
             {
                 var result = Md.Header5("My Header");
 
-                Assert.That(result, Is.EqualTo("##### My Header"));
+                Assert.That(result, Is.EqualTo("##### My Header" + Environment.NewLine));
             }
         }
 
@@ -227,7 +227,7 @@ namespace ByteDev.Markdown.UnitTests.Helper
             {
                 var result = Md.Header6("My Header");
 
-                Assert.That(result, Is.EqualTo("###### My Header"));
+                Assert.That(result, Is.EqualTo("###### My Header" + Environment.NewLine));
             }
         }
 
@@ -287,6 +287,27 @@ namespace ByteDev.Markdown.UnitTests.Helper
                 var result = Md.Image("/images/icon.png");
 
                 Assert.That(result, Is.EqualTo("![Image](/images/icon.png)"));
+            }
+        }
+
+        [TestFixture]
+        public class Code
+        {
+            [TestCase(null)]
+            [TestCase("")]
+            public void WhenIsNullOrEmpty_ThenReturnEmpty(string text)
+            {
+                var result = Md.Code(text);
+
+                Assert.That(result, Is.Empty);
+            }
+
+            [Test]
+            public void WhenTextIsValid_ThenReturnMarkdown()
+            {
+                var result = Md.Code("int x = 1;");
+
+                Assert.That(result, Is.EqualTo("`int x = 1;`"));
             }
         }
 
@@ -386,9 +407,9 @@ namespace ByteDev.Markdown.UnitTests.Helper
             [Test]
             public void WhenSingle_ThenReturnRow()
             {
-                var expected = "| Name |" + Environment.NewLine;
+                var expected = "| John Smith |" + Environment.NewLine;
 
-                var result = Md.TableRow("Name");
+                var result = Md.TableRow("John Smith");
 
                 Assert.That(result, Is.EqualTo(expected));
             }
@@ -396,9 +417,9 @@ namespace ByteDev.Markdown.UnitTests.Helper
             [Test]
             public void WhenTwo_ThenReturnRow()
             {
-                var expected = "| Name | Age |" + Environment.NewLine;
+                var expected = "| John Smith | 50 |" + Environment.NewLine;
 
-                var result = Md.TableRow("Name", "Age");
+                var result = Md.TableRow("John Smith", "50");
 
                 Assert.That(result, Is.EqualTo(expected));
             }

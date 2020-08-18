@@ -414,7 +414,7 @@ namespace ByteDev.Markdown.Helper
 
             var prefix = new string('#', level);
 
-            return $"{prefix} {text}";
+            return $"{prefix} {text}" + Environment.NewLine;
         }
 
         private static string GetIndent(int indent)
