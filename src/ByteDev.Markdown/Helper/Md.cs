@@ -72,7 +72,7 @@ namespace ByteDev.Markdown.Helper
         /// <returns>Markdown horizontal rule.</returns>
         public static string HorizontalRule()
         {
-            return "---";
+            return "---" + Environment.NewLine;
         }
 
         /// <summary>
@@ -174,7 +174,7 @@ namespace ByteDev.Markdown.Helper
 
             return $"```{language}" + Environment.NewLine +
                    $"{code.TrimEndNewLine()}" + Environment.NewLine +
-                   "```";
+                   "```" + Environment.NewLine;
         }
 
         /// <summary>

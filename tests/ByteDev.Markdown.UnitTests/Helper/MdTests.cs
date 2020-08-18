@@ -101,7 +101,7 @@ namespace ByteDev.Markdown.UnitTests.Helper
             {
                 var result = Md.HorizontalRule();
 
-                Assert.That(result, Is.EqualTo("---"));
+                Assert.That(result, Is.EqualTo("---" + Environment.NewLine));
             }
         }
 
@@ -333,7 +333,7 @@ namespace ByteDev.Markdown.UnitTests.Helper
                     "```csharp" + Environment.NewLine +
                     "int x = 1;" + Environment.NewLine +
                     "int y = 2;" + Environment.NewLine +
-                    "```";
+                    "```" + Environment.NewLine;
 
                 var result = Md.CodeBlock(code, "csharp");
 
