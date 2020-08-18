@@ -47,9 +47,9 @@ Reference the namespace: `ByteDev.Markdown.Helper`.
 - CodeBlock
 - Link
 - Image
-- ListUnordered
-- ListOrdered
-- ListTask
+- OrderedList
+- UnorderedList
+- TaskList
 - TableHeader
 - TableRow
 
